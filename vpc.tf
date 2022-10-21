@@ -1,5 +1,6 @@
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
+  version = "3.18.0"
 
   name = local.name
   cidr = "10.0.0.0/16"
@@ -13,8 +14,11 @@ module "vpc" {
   enable_nat_gateway = false
   single_nat_gateway = true
 
+  private_subnet_tags = {
+    Name = "terraform private"
+  }
   public_subnet_tags = {
-    Name = "terraform vpc public subnet"
+    Name = "terraform public"
   }
 
   tags = local.tags
