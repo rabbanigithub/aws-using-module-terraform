@@ -7,6 +7,6 @@ locals {
   region = "us-east-2"
 
   tags = {
-    Name  = local.name
+    Name = local.name
   }
 }
