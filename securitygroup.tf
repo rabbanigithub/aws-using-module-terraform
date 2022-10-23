@@ -6,8 +6,7 @@ module "example_sg" {
   description = "Security group for EC2 Instacne allow ssh and http"
   vpc_id      = module.vpc.vpc_id
 
-
-  ingress_rules       = ["https-443-tcp"]
+  ingress_rules       = ["http-80-tcp"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
 
   egress_rules       = ["all-all"]
@@ -19,13 +18,6 @@ module "example_sg" {
       to_port     = 22
       protocol    = "tcp"
       description = "allow ssh"
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 80
-      to_port     = 80
-      protocol    = "tcp"
-      description = "allow http"
       cidr_blocks = "0.0.0.0/0"
     },
   ]
