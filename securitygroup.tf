@@ -2,7 +2,7 @@ module "example_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.13.1"
 
-  name        = "example module sg"
+  name        = local.name
   description = "Security group for EC2 Instacne allow ssh and http"
   vpc_id      = module.vpc.vpc_id
 
