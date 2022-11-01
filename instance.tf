@@ -11,9 +11,9 @@ module "ec2_instance" {
   subnet_id                   = element(module.vpc.private_subnets, 0)
   vpc_security_group_ids      = [module.example_sg.security_group_id]
   associate_public_ip_address = true
-#  key_name                    = [aws_key_pair.mykeypair.key_name]
-  key_name                    = "mykeypair"
-  tags                        = local.tags
+  #  key_name                    = [aws_key_pair.mykeypair.key_name]
+  key_name = "mykeypair"
+  tags     = local.tags
 }
 
 data "aws_ami" "ubuntu" {
