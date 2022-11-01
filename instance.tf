@@ -4,14 +4,15 @@ module "ec2_instance" {
 
   name = local.name
 
-  ami                         = data.aws_ami.ubuntu.id
-  instance_type               = "t2.micro"
-  monitoring                  = true
-  availability_zone           = element(module.vpc.azs, 0)
-  subnet_id                   = element(module.vpc.private_subnets, 0)
-  vpc_security_group_ids      = [module.example_sg.security_group_id]
-  associate_public_ip_address = true
-  #  key_name                    = [aws_key_pair.mykeypair.key_name]
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = "t2.micro"
+  monitoring             = true
+  availability_zone      = element(module.vpc.azs, 0)
+  subnet_id              = element(module.vpc.public_subnets, 0)
+  vpc_security_group_ids = [module.example_sg.security_group_id]
+  user_data_base64            = base64encode(local.user_data)
+  user_data_replace_on_change = true
+
   key_name = "mykeypair"
   tags     = local.tags
 }
